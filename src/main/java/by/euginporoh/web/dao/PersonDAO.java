@@ -17,7 +17,7 @@ import by.euginporoh.web.models.Person;
 public class PersonDAO {
 	private static int PEOPLE_COUNT = 0;
 	
-	private static final String URL = "jdbc:postgresql://localhost:5432/first_db";
+	private static final String URL = "jdbc:postgresql://localhost:5432/lb_project1";
 	private static final String USERNAME = "postgres";
 	private static final String PASSWORD = "6693895zen";
 	

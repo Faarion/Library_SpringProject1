@@ -147,3 +147,5 @@ local.properties
 #.project
 >>>>>>> branch 'master' of git@github.com:Faarion/spring-app1.git
 /target/
+
+database.properties
