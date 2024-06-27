@@ -2,25 +2,21 @@
 <html>
 <head lang="ru" xmlns:th="http://thymeleaf.org">
 <meta charset="UTF-8">
-<title>Update person</title>
+<title th:text="${'Изменить' + person.getFio()}">Update person</title>
 </head>
 <body>
 
 <form th:method="PATCH" th:action="@{/people/{id}(id=${person.getId()})}" th:object="${person}">
-	<label for="name">Enter name: </label>
-	<input type="text" th:field="*{name}" id="name"/>
-	<div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
+	<label for="fio">Введите ФИО: </label>
+	<input type="text" th:field="*{fio}" id="fio"/>
+	<div style="color: red" th:if="${#fields.hasErrors('fio')}" th:errors="*{fio}">FIO error</div>
 	<br>
-	<label for="age">Enter age: </label>
-	<input type="text" th:field="*{age}" id="age"/>
-	<div style="color: red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age error</div>
-	<br>
-	<label for="email">Enter email: </label>
-	<input type="text" th:field="*{email}" id="email"/>
-	<div style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</div>
+	<label for="yearOfBirth">Введите год рождения: </label>
+	<input type="text" th:field="*{yearOfBirth}" id="yearOfBirth"/>
+	<div style="color: red" th:if="${#fields.hasErrors('yearOfBirth')}" th:errors="*{yearOfBirth}">Age error</div>
 		
 	<br/>
-	<input type="submit" value="Update!"/>
+	<input type="submit" value="Редактировать!"/>
 </form>
 
 </body>

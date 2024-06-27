@@ -1,61 +1,57 @@
 package by.euginporoh.web.models;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class Person {
+	
 	private int id;
 	
-	@NotEmpty(message = "Name should not be empty")
-	@Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
-	private String name;
-	@Min(value = 0, message = "Age should be greater than 0")
-	@Max(value = 130, message = "Age should be less than 130")
-	private int age;
-	@NotEmpty(message = "Email should not be empty")
-	@Email(message = "Email should be valid")
-	private String email;
+	@Pattern(regexp = "[A-Za-zА-яЁё]+\\s[A-Za-zА-яЁё]+\\s[A-Za-zА-яЁё]+", 
+			message = "Должно быть ФИО разделённое пробелами")
+	@NotEmpty(message = "ФИО не должно быть пустым")
+	@Size(min = 5, max = 60, message = "ФИО должно быть от 5 до 60 знаков")
+	private String fio;
+	
+	@Min(value = 6, message = "Минимальный возраст - 6 лет")
+	@Max(value = 130, message = "Максимальный возраст - 130 лет")
+	private int yearOfBirth;
 
-	public Person(int id, String name, int age, String email) {
+	public Person(int id, String fio, int age) {
 		this.id = id;
-		this.name = name;
-		this.age = age;
-		this.email = email;
+		this.fio = fio;
+		this.yearOfBirth = age;
 	}
 
 	public Person() {
-		
+	
 	}
 	
 	public int getId() {
 		return id;
 	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
+
+	public void setId(int person_id) {
+		this.id = person_id;
 	}
 
-	public int getAge() {
-		return age;
+	public String getFio() {
+		return fio;
 	}
 
-	public void setAge(int age) {
-		this.age = age;
+	public void setFio(String person_fio) {
+		this.fio = person_fio;
 	}
 
-	public String getEmail() {
-		return email;
+	public int getYearOfBirth() {
+		return yearOfBirth;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}	
+	public void setYearOfBirth(int yearOfBirth) {
+		this.yearOfBirth = yearOfBirth;
+	}
+	
 }

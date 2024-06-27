@@ -2,17 +2,20 @@
 <html lang="ru" xmlns:th="http://thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Person</title>
+<title th:text="${person.getFio()}">Person</title>
 </head>
 <body>
-	<p th:text="${person.getName()} + ', ' + ${person.getAge()}">VALUE Name</p>
-	<p th:text="'Email: ' + ${person.getEmail()}">VALUE Email</p>
-	<p th:text="${person.getId()}">VALUE ID</p>
+	<p th:text="${person.getFio()} + ', ' + ${person.getYearOfBirth()}">VALUE Name</p>
 	
-	<a th:href="@{/people/{id}/edit(id=${person.getId()})}">Edit</a>
+	<hr>
 	
+	<a th:href="@{/people/{id}/edit(id=${person.getId()})}">
+		<input type="button" value="Редактировать">
+	</a>
+	
+	<br>
 	<form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}">
-		<input type="submit" value="Delete"/>
+		<input type="submit" value="Удалить"/>
 	</form>
 </body>
 </html>
