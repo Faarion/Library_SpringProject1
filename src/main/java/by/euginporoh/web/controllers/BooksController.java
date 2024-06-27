@@ -15,18 +15,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import by.euginporoh.web.dao.BookDAO;
+import by.euginporoh.web.dao.PersonDAO;
 import by.euginporoh.web.models.Book;
+import by.euginporoh.web.models.Person;
 
 @Controller
 @RequestMapping("/books")
 public class BooksController {
 	
 	private BookDAO bookDAO;
+	private PersonDAO personDAO;
 
 	@Autowired
-	public BooksController(BookDAO bookDAO) {
+	public BooksController(BookDAO bookDAO, PersonDAO personDAO) {
 		super();
 		this.bookDAO = bookDAO;
+		this.personDAO = personDAO;
 	}
 	
 	@GetMapping()
@@ -36,8 +40,9 @@ public class BooksController {
 	}
 	
 	@GetMapping("/{id}")
-	public String show(@PathVariable("id") int id, Model model) {
+	public String show(@PathVariable("id") int id, Model model, @ModelAttribute("person") Person person) {
 		model.addAttribute("book", bookDAO.show(id));
+		model.addAttribute("people", personDAO.index());
 		return "books/show";
 	}
 	
@@ -76,4 +81,11 @@ public class BooksController {
 		bookDAO.delete(id);
 		return "redirect:/books";
 	}
+	
+	@PatchMapping("/{id}/asign")
+	public String asignPerson(@PathVariable("id") int id, @ModelAttribute("person") Person person) {
+		bookDAO.asignPerson(id, person.getId());
+		return "redirect:/books";
+	}
+	
 }

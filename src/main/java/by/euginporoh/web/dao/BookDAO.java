@@ -42,5 +42,10 @@ public class BookDAO {
 	public void delete(int id) {
 		jdbcTemplate.update("DELETE FROM Book Where id=?", id);
 	}
+	
+	public void asignPerson(int idBook, int idPerson) {
+		jdbcTemplate.update("UPDATE Book SET person_id=? WHERE id=?",
+				idPerson, idBook);
+	}
 
 }
