@@ -1,5 +1,7 @@
 package by.euginporoh.web.controllers;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +44,14 @@ public class BooksController {
 	@GetMapping("/{id}")
 	public String show(@PathVariable("id") int id, Model model, @ModelAttribute("person") Person person) {
 		model.addAttribute("book", bookDAO.show(id));
-		model.addAttribute("people", personDAO.index());
+
+		Optional<Person> bookowner = bookDAO.getBookOwner(id);
+		
+		if (bookowner.isPresent()) {
+			model.addAttribute("owner", bookowner.get());
+		} else {
+			model.addAttribute("people", personDAO.index());
+		}
 		return "books/show";
 	}
 	
@@ -86,6 +95,12 @@ public class BooksController {
 	public String asignPerson(@PathVariable("id") int id, @ModelAttribute("person") Person person) {
 		bookDAO.asignPerson(id, person.getId());
 		return "redirect:/books";
+	}
+	
+	@PatchMapping("/{id}/free")
+	public String freePerson(@PathVariable("id") int id) {
+		bookDAO.release(id);
+		return "redirect:/books/" + id;
 	}
 	
 }
