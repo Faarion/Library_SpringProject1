@@ -1,5 +1,7 @@
 package by.euginporoh.web.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import by.euginporoh.web.dao.PersonDAO;
+import by.euginporoh.web.models.Book;
 import by.euginporoh.web.models.Person;
 
 @Controller
@@ -38,6 +41,12 @@ public class PeopleController {
 	@GetMapping("/{id}")
 	public String show(@PathVariable("id") int id, Model model) {
 		model.addAttribute("person", personDAO.show(id));
+		
+		List<Book> books = personDAO.getAllBooksOwnedByAPerson(id);
+		if (!books.isEmpty()) {
+			model.addAttribute("books", books);
+		}
+		
 		return "people/show";
 	}
 	
