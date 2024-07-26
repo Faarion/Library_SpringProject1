@@ -1,7 +1,5 @@
 package by.euginporoh.web.controllers;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-<<<<<<< HEAD
-import by.euginporoh.web.dao.PersonDAO;
-import by.euginporoh.web.models.Book;
-=======
->>>>>>> branch 'project2_hibernate' of https://github.com/Faarion/Library_SpringProject1.git
+//github.com/Faarion/Library_SpringProject1.git
 import by.euginporoh.web.models.Person;
 import by.euginporoh.web.services.PeopleService;
 
@@ -44,17 +38,7 @@ public class PeopleController {
 	
 	@GetMapping("/{id}")
 	public String show(@PathVariable("id") int id, Model model) {
-<<<<<<< HEAD
-		model.addAttribute("person", personDAO.show(id));
-		
-		List<Book> books = personDAO.getAllBooksOwnedByAPerson(id);
-		if (!books.isEmpty()) {
-			model.addAttribute("books", books);
-		}
-		
-=======
 		model.addAttribute("person", peopleService.findOne(id));
->>>>>>> branch 'project2_hibernate' of https://github.com/Faarion/Library_SpringProject1.git
 		return "people/show";
 	}
 	
