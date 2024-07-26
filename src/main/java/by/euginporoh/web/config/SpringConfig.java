@@ -1,6 +1,5 @@
 package by.euginporoh.web.config;
 
-import java.util.Objects;
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -13,7 +12,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -30,7 +28,7 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 @Configuration
 @ComponentScan("by.euginporoh.web")
 @EnableWebMvc
-@PropertySource("classpath:database.properties")
+@PropertySource("classpath:hibernate.properties")
 @EnableTransactionManagement
 @EnableJpaRepositories("by.euginporoh.web.repositories")
 public class SpringConfig implements WebMvcConfigurer {
